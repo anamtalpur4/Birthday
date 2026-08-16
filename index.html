@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy 21st Birthday Ujala</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:18px;
+    min-height:100vh;
+    background:#dca2f5;
+    border:3px dashed rgba(255,255,255,.8);
+    font-family:"Caveat Brush",cursive;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+#particles-canvas{
+    position:fixed;
+    inset:0;
+    width:100vw;
+    height:100vh;
+    pointer-events:none;
+    z-index:999;
+}
+
+h1{
+    color:white;
+    font-size:2.4rem;
+    margin:15px 0 22px;
+    text-shadow:0 0 10px #a56fc0;
+}
+
+.main-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    max-width:700px;
+    margin:auto;
+}
+
+.main-buttons button{
+    flex:1 1 130px;
+}
+
+button{
+    padding:10px 16px;
+    border:3px solid white;
+    border-radius:25px;
+    background:#dca2f5;
+    color:white;
+    font-family:"Patrick Hand",cursive;
+    font-size:17px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+/* PAGES */
+
+.page{
+    display:none;
+    margin:30px auto 10px;
+    animation:pageIn .5s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* LETTER */
+
+.letter-card{
+    width:min(92vw,370px);
+    max-height:70vh;
+    margin:auto;
+    overflow-y:auto;
+    background:#fff;
+    border-radius:30px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,.14);
+    text-align:left;
+}
+
+.letter-card h2{
+    text-align:center;
+    color:#d58bf2;
+    font-family:"Caveat Brush",cursive;
+    font-size:2rem;
+    margin-top:0;
+}
+
+.letter-card p{
+    color:#444;
+    font-family:"Patrick Hand",cursive;
+    font-size:17px;
+    line-height:1.75;
+    white-space:pre-line;
+    margin:0;
+}
+
+.letter-card::-webkit-scrollbar{
+    width:6px;
+}
+
+.letter-card::-webkit-scrollbar-thumb{
+    background:#dca2f5;
+    border-radius:20px;
+}
+
+/* ALBUM */
+
+.album-title{
+    color:white;
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.album-wrapper{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    position:relative;
+}
+
+.album{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scroll-snap-type:x mandatory;
+    padding:20px 45px;
+}
+
+.album::-webkit-scrollbar{
+    display:none;
+}
+
+.photo{
+    flex:0 0 270px;
+    scroll-snap-align:center;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.photo:nth-child(even){
+    transform:rotate(3deg);
+}
+
+.photo:nth-child(odd){
+    transform:rotate(-3deg);
+}
+
+.photo img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:15px;
+    display:block;
+}
+
+.arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:45px;
+    height:45px;
+    padding:0;
+    border:none;
+    background:white;
+    color:#dca2f5;
+    font-size:25px;
+    z-index:5;
+}
+
+.left{
+    left:3px;
+}
+
+.right{
+    right:3px;
+}
+
+/* FUNNY SECTION */
+
+.funny-title{
+    color:white;
+    font-size:2.2rem;
+    margin-bottom:15px;
+}
+
+.fact{
+    background:white;
+    border-radius:25px;
+    padding:20px;
+    margin:15px auto;
+    width:min(92vw,370px);
+    color:#444;
+    font-family:"Patrick Hand",cursive;
+    font-size:18px;
+    line-height:1.6;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+/* GIFT */
+
+.gift-area{
+    text-align:center;
+}
+
+.gift-box{
+    position:relative;
+    width:170px;
+    height:170px;
+    margin:40px auto 15px;
+    cursor:pointer;
+    animation:float 2.5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.box{
+    position:absolute;
+    bottom:0;
+    width:170px;
+    height:120px;
+    background:#ff7aa8;
+    border-radius:0 0 12px 12px;
+}
+
+.lid{
+    position:absolute;
+    top:30px;
+    left:-5px;
+    width:180px;
+    height:35px;
+    background:#ff92ba;
+    border-radius:10px;
+    z-index:3;
+    transition:.7s;
+}
+
+.ribbon-v{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    width:22px;
+    height:155px;
+    background:#fff4c8;
+    z-index:4;
+}
+
+.ribbon-h{
+    position:absolute;
+    top:38px;
+    left:-5px;
+    width:180px;
+    height:18px;
+    background:#fff4c8;
+    z-index:4;
+}
+
+.bow{
+    position:absolute;
+    top:5px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    transition:.7s;
+}
+
+.bow span{
+    position:absolute;
+    width:30px;
+    height:22px;
+    border:8px solid #fff4c8;
+    border-radius:50%;
+}
+
+.bow span:first-child{
+    left:-28px;
+    transform:rotate(-25deg);
+}
+
+.bow span:last-child{
+    left:0;
+    transform:rotate(25deg);
+}
+
+.gift-box.open .lid{
+    transform:translate(-30px,-80px) rotate(-30deg);
+}
+
+.gift-box.open .bow{
+    transform:translate(-65px,-80px) rotate(-30deg);
+}
+
+#giftText{
+    color:white;
+    font-family:"Patrick Hand",cursive;
+    font-size:20px;
+}
+
+#giftImage{
+    display:none;
+    width:180px;
+    margin:20px auto;
+    animation:pop .6s ease;
+}
+
+@keyframes pop{
+    0%{
+        transform:scale(.2);
+        opacity:0;
+    }
+    70%{
+        transform:scale(1.1);
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* FINAL */
+
+.final-card{
+    width:min(92vw,380px);
+    margin:auto;
+    background:white;
+    border-radius:30px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.final-card h2{
+    color:#d58bf2;
+    font-family:"Caveat Brush",cursive;
+}
+
+.final-card p{
+    color:#444;
+    font-family:"Patrick Hand",cursive;
+    font-size:18px;
+    line-height:1.7;
+}
+
+/* BACK BUTTON */
+
+.back{
+    margin-top:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    body{
+        padding:14px;
+    }
+
+    h1{
+        font-size:2rem;
+    }
+
+    .main-buttons{
+        gap:8px;
+    }
+
+    .main-buttons button{
+        flex:1 1 105px;
+        font-size:15px;
+        padding:9px 8px;
+    }
+
+    .photo{
+        flex:0 0 78%;
+    }
+
+    .photo img{
+        height:300px;
+    }
+
+    .arrow{
+        width:40px;
+        height:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<h1>HAPPY BIRTHDAY 🌸</h1>
+
+<div class="main-buttons">
+
+    <button onclick="showPage('letter')">
+        Birthday Letter 💌
+    </button>
+
+    <button onclick="showPage('about')">
+        About Her 🌷
+    </button>
+
+    <button onclick="showPage('memories')">
+        Our Memories 🫂
+    </button>
+
+    <button onclick="showPage('album')">
+        Little Memories 📸
+    </button>
+
+    <button onclick="showPage('funny')">
+        Certified Pitial 😂
+    </button>
+
+    <button onclick="showPage('gift')">
+        Gift 🎁
+    </button>
+
+    <button onclick="showPage('unsaid')">
+        Unsaid Words 🤍
+    </button>
+
+</div>
+
+
+<!-- ================= LETTER ================= -->
+
+<section id="letter" class="page active">
+
+<div class="letter-card">
+
+<h2>Happy 21st Birthday, Sarkar! 🎂💗</h2>
+
+<p>
+Dear Ujala, 🌻
+
+Happy 21st Birthday!
+
+Officially 21 now... I still don't know how we got here. 😭😂
+
+Looking back, it honestly feels crazy how long you've been a part of my life. From childhood, school, college, university, hostel life and all the random phases in between... somehow, through everything, we were always together.
+
+You've been one of the most important people in my life for so many years. We've shared countless memories, stupid jokes, arguments, laughter, random conversations and moments that probably wouldn't make sense to anyone else. 😂
+
+You're funny, pagal, gussail, kind, caring, loyal, honest and genuinely helpful. You're also one of those people who notices when someone needs help, even when they don't say it.
+
+And honestly, your random baatein still make me laugh. Sometimes I don't even know what you're saying, but somehow I'm sitting there laughing like a pagal. 😭😂
+
+I hope you never lose the kindness and goodness that makes you who you are.
+
+I hope this new chapter of your life brings you happiness, success, peace and countless beautiful memories.
+
+I hope you make your family proud and achieve everything you've ever dreamed of.
+
+And yes... please keep being the same annoying person because I don't think I know how to deal with a normal version of you. 😂
+
+Thank you for being there through all these years.
+
+Thank you for every laugh, every argument, every taunt, every random conversation and every memory.
+
+Happy 21st Birthday once again. 🎂🤍
+
+Stay happy.
+Stay kind.
+Stay weird.
+And please... stay YOU.
+
+— Your certified pitial partner 🐷🤝💗
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= ABOUT HER ================= -->
+
+<section id="about" class="page">
+
+<div class="letter-card">
+
+<h2>About Her 🌷</h2>
+
+<p>
+If I had to describe Ujala, I'd probably say she's a mixture of pagalpan, gussa, kindness and random comedy. 😭😂
+
+She's funny without even trying.
+
+Her random baatein literally appear out of nowhere and somehow make me laugh for no reason.
+
+She's also extremely kind and caring. She notices things, helps people and has a lot of empathy.
+
+I'm extremely indecisive, and somehow she has developed the patience to deal with me. 😂
+
+Although she's actually very impatient herself... but when it comes to me, she somehow manages to show patience. 😭
+
+She's loyal, honest, helpful and one of those people who genuinely cares about the people around her.
+
+And then there's her love for cooking...
+
+Her Instagram search bar probably contains 90% recipes. 😂
+
+New recipes, new food ideas, new cooking videos...
+
+Bas ek problem hai...
+
+Aaj tak uske haath ka properly kuch khane ko mila hi nahi. 😭😂
+
+She loves shopping, going outside and looking at clothes.
+
+And somehow, every few days, there's another random story, another prediction, another funny line and another reason for me to say...
+
+Normal hona humare bas ki baat nahi. 😂
+
+But honestly, that's exactly what makes her special.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= MEMORIES ================= -->
+
+<section id="memories" class="page">
+
+<div class="letter-card">
+
+<h2>Our Little Story 🫂</h2>
+
+<p>
+We've been together since childhood.
+
+Ninth, matric, first year, college, university...
+
+Har jagah somehow hum saath hi rahe.
+
+Even when life separated us for some time, somehow we ended up finding our way back to each other.
+
+We've had our fights too.
+
+Kabhi 3 din, kabhi 4 din baat nahi hui.
+
+I still remember one of our first proper fights.
+
+We didn't talk for two days, and then she finally texted:
+
+"tumhein nahi lagta ab zyada ho gaya?"
+
+And I replied...
+
+"Haan, mujhay bhi lag raha hai ab zyada hi ho gaya." 😭😂
+
+Then you said you'd heard that the person who says sorry is the bigger person...
+
+And you said sorry.
+
+That moment still makes me smile.
+
+We've spent so many important years together.
+
+School.
+College.
+University.
+Hostel.
+Roommates.
+Random trips.
+Random problems.
+Random laughter.
+
+And then came Mirpurkhas...
+
+The place where our certified Pitial era officially began. 😂
+
+Light nahi thi.
+
+Paper mill chal nahi rahi thi.
+
+paper mill chalne k bad zindagi me kbhi asa nh howa k light jae lakin humne sabit kiya k hum pitial k aala mukam p hai aur light chali gae 
+
+Hum dono beemar.
+
+Aur phir jis din wapas aana tha...
+
+us din beech raste me rukna gadi ka itna late ana 
+
+Bas phir humne officially accept kar liya:
+
+Hum Pitial hain. 😂😂
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= ALBUM ================= -->
+
+<section id="album" class="page">
+
+<h2 class="album-title">Little Memories 📸</h2>
+
+<div class="album-wrapper">
+
+<button class="arrow left" onclick="scrollAlbum(-1)">❮</button>
+
+<div class="album" id="albumContainer">
+
+<!-- 21 PHOTO SLOTS -->
+
+<div class="photo"><img src="photos/1">alt="Memory 1"></div>
+<div class="photo"><img src="photos/2"> alt="Memory 2"></div>
+<div class="photo"><img src="photos/3"> alt="Memory 3"></div>
+<div class="photo"><img src="photos/4"> alt="Memory 4"></div>
+<div class="photo"><img src="photos/5" alt="Memory 5"></div>
+<div class="photo"><img src="photos/6" alt="Memory 6"></div>
+<div class="photo"><img src="photos/7" alt="Memory 7"></div>
+<div class="photo"><img src="photos/8" alt="Memory 8"></div>
+<div class="photo"><img src="photos/9" alt="Memory 9"></div>
+<div class="photo"><img src="photos/10" alt="Memory 10"></div>
+<div class="photo"><img src="photos/11" alt="Memory 11"></div>
+<div class="photo"><img src="photos/12" alt="Memory 12"></div>
+<div class="photo"><img src="photos/13" alt="Memory 13"></div>
+<div class="photo"><img src="photos/14" alt="Memory 14"></div>
+<div class="photo"><img src="photos/15" alt="Memory 15"></div>
+<div class="photo"><img src="photos/16" alt="Memory 16"></div>
+<div class="photo"><img src="photos/17" alt="Memory 17"></div>
+<div class="photo"><img src="photos/18" alt="Memory 18"></div>
+<div class="photo"><img src="photos/19" alt="Memory 19"></div>
+<div class="photo"><img src="photos/20" alt="Memory 20"></div>
+<div class="photo"><img src="photos/21" alt="Memory 21"></div>
+
+</div>
+
+<button class="arrow right" onclick="scrollAlbum(1)">❯</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= PITIAL ================= -->
+
+<section id="funny" class="page">
+
+<h2 class="funny-title">Certified Pitial 😂🐷</h2>
+
+<div class="fact">
+Bachpan mein school gaye → pehle ghee waghera milta tha → hum aaye → ghee band. 😭😂
+</div>
+
+<div class="fact">
+6th, 7th, 8th mein thode paise milne lage → hum aaye → paise bhi band. 😂
+</div>
+
+<div class="fact">
+9th aur matric mein gaye → wahan pehle hi kuch khaas tha nahi → humara Pitialpan bachpan se hi confirmed tha. 😭
+</div>
+
+<div class="fact">
+First year mein kaha gaya private school jao, A1 grade milega → hum wahan gaye → A1 grade wala scene bhi gaya. 😂
+</div>
+
+<div class="fact">
+University mein aaye → cheezein aur zyada kharab hona start. 😭
+Mirpurkhas internship mein gaye → light ka issue...
+</div>
+
+<div class="fact">
+  socha tha 12 rabiulawal tuesday ko hoga to aik chutti mil jaegi function attend kr lenge par humare naseeb me kaha....
+   
+   </div>
+
+Bas phir humne officially accept kar liya:
+
+<b>Hum dono certified Pitial hain. 🐷🤝😂</b><div></div>
+</section>
+
+
+
+<div class="fact">
+Hum jahan jaate hain wahan cheezein kharab ho jaati hain.
+
+School mein gaye → cheezein band.
+
+University mein gaye → problems.
+
+Mirpurkhas gaye → light band.
+
+Ab bas Dua Taveez karwana baqi hai. 😭😂
+</div>
+
+<div class="fact">
+Aur jab Ujala paper predict karti hai:
+
+"Ye question mujhe lagta hai paper mein aayega."
+
+Aur phir...
+
+Most of the time aa bhi jata hai. 😭
+
+Meri predictions? Allah hi malik hai. 😂
+</div>
+
+<div class="fact">
+Certified Pitial.
+
+Officially.
+
+Permanently.
+
+Lifetime membership. 🐷🤝😂
+</div>
+
+</section>
+
+
+<!-- ================= GIFT ================= -->
+
+<section id="gift" class="page">
+
+<div class="gift-area">
+
+<h2 class="funny-title">A Little Gift 🎁</h2>
+
+<div class="gift-box" id="giftBox" onclick="tapGift()">
+
+<div class="lid"></div>
+<div class="box"></div>
+<div class="ribbon-v"></div>
+<div class="ribbon-h"></div>
+
+<div class="bow">
+<span></span>
+<span></span>
+</div>
+
+</div>
+
+<p id="giftText">
+🎁 Tap the gift 3 times!
+</p>
+
+<img id="giftImage"
+src="https://i.ibb.co/4z2CvqV/bubu-rose-bubu-sweet.png"
+alt="Gift">
+
+</div>
+
+</section>
+
+
+<!-- ================= UNSAID WORDS ================= -->
+
+<section id="unsaid" class="page">
+
+<div class="final-card">
+
+<h2>🤍 Unsaid Words</h2>
+
+<p>
+I don't know what life has planned for us.
+
+Maybe we'll always stay this close, maybe life will take us in different directions someday.
+
+But no matter what happens, I'll always be grateful that our paths crossed.
+
+You are a huge part of my life.
+
+You've been there through so many of my most important years, and I genuinely hope you always remember how loved and valued you are.
+
+
+And somewhere in this huge world, there's always going to be one certified pitial who believes in you. 🤍
+
+I hope you become successful.
+
+I hope you make your family proud.
+
+I hope you get everything you work for.
+
+And most importantly...
+
+I hope you're happy.
+
+Thank you for every memory.
+
+Every laugh.
+
+Every argument.
+
+Every random conversation.
+
+Every taunt.
+
+Every ridiculous moment that somehow became a memory.
+
+I'm genuinely grateful that I got to grow up with you.
+
+Happy 21st, Ujala. 🌷
+
+Stay happy.
+
+Stay kind.
+
+Stay crazy.
+
+And please never forget...
+
+Our Pitial era is forever. 🐷🤝💗
+</p>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   PAGE SWITCHING
+========================= */
+
+function showPage(pageId){
+
+    const pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    const selectedPage = document.getElementById(pageId);
+
+    if(selectedPage){
+        selectedPage.classList.add("active");
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+    }
+}
+
+
+/* =========================
+   ALBUM ARROWS
+========================= */
+
+function scrollAlbum(direction){
+
+    const album = document.getElementById("albumContainer");
+
+    album.scrollBy({
+        left: direction * 300,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   GIFT - 3 TAPS
+========================= */
+
+let giftTaps = 0;
+
+function tapGift(){
+
+    giftTaps++;
+
+    const gift = document.getElementById("giftBox");
+    const text = document.getElementById("giftText");
+    const image = document.getElementById("giftImage");
+
+    if(giftTaps === 1){
+
+        text.innerHTML =
+        "🎁 Ohooo... again! (" + giftTaps + "/3)";
+
+    }
+
+    else if(giftTaps === 2){
+
+        text.innerHTML =
+        "🎁 Bas ek aur tap! (" + giftTaps + "/3)";
+
+    }
+
+    else if(giftTaps === 3){
+
+        gift.classList.add("open");
+
+        text.innerHTML =
+        "Hehe... finally! 🎀💗<br>Ye tumhare liye hai. 🥹";
+
+        setTimeout(function(){
+
+            image.style.display = "block";
+
+        },700);
+
+    }
+
+}
+
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+const canvas =
+document.getElementById("particles-canvas");
+
+const ctx = canvas.getContext("2d");
+
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+canvas.width = width;
+canvas.height = height;
+
+let particles = [];
+
+for(let i = 0; i < 70; i++){
+
+    particles.push({
+        x:Math.random()*width,
+        y:Math.random()*height,
+        size:Math.random()*3+1,
+        speed:Math.random()*1+.3,
+        opacity:Math.random()*.6+.2
+    });
+
+}
+
+function drawParticles(){
+
+    ctx.clearRect(0,0,width,height);
+
+    particles.forEach(function(p){
+
+        p.y += p.speed;
+
+        if(p.y > height){
+            p.y = -10;
+            p.x = Math.random()*width;
+        }
+
+        ctx.beginPath();
+
+        ctx.fillStyle =
+        "rgba(255,255,255," + p.opacity + ")";
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.size,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+    });
+
+    requestAnimationFrame(drawParticles);
+}
+
+drawParticles();
+
+
+/* =========================
+   RESIZE
+========================= */
+
+window.addEventListener("resize",function(){
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+
+});
+
+</script>
+
+</body>
+</html>
